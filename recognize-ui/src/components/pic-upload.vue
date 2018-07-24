@@ -6,7 +6,9 @@
  * @date 7/24/18
  */
 <template>
-
+  <div>
+    this is pic upload
+  </div>
 </template>
 <script>
 export default {
