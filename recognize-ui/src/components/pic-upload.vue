@@ -47,8 +47,8 @@ export default {
       let _vue = this;
       reader.readAsDataURL(file);
       reader.onload = function () {
-        _vue.fileList.push({name: file.name, content: reader.result, convertId: _vue.cid});
-        _vue.readyUploadFile.push({name: file.name});
+        _vue.picList.push({name: file.name, content: reader.result});
+        _vue.readyUploadPicList.push({name: file.name});
       }
       return false;
     },
@@ -58,8 +58,8 @@ export default {
       let i = 0;
       this.fileList.forEach(function (e) {
         if (e.name == file.name) {
-          _vue.fileList.splice(i,1);
-          _vue.readyUploadFile.splice(i,1);
+          _vue.picList.splice(i,1);
+          _vue.readyUploadPicList.splice(i,1);
         }
         i++;
       });
@@ -67,7 +67,7 @@ export default {
     submitPic () {
       if (!this.isEmpty()) {
         util.post('upload/multybase64', this.fileList).then(res => {
-          this.$Message.success('file upload success!');
+          this.$Message.success('pic upload success!');
           this.$emit('setDocData',this.handleDocList());
           this.$emit('next');
         });
