@@ -42,7 +42,7 @@
 	</dependencyManagement>
 
 	<modules>
-    <module>recognize-core</module>
-    <module>recognize-service</module>
-  </modules>		
+		<module>recognize-core</module>
+		<module>recognize-service</module>
+	</modules>
 </project>
