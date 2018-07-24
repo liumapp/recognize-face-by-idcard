@@ -14,8 +14,8 @@
           <Step title="上传匹对图片" content="上传一张自拍照和一张身份证正面照片，匹对两张图片的人脸是否为同一个人"></Step>
           <Step title="配对结果" content="图片相似程度，包括清晰度等参数"></Step>
         </Steps>
-        <doc-upload v-if="current == 0" @next="nextStep" @setDocData="setDocData" :convertId="convertId"></doc-upload>
-        <converting v-else-if="current == 1" :docList="docList" @next="nextStep" :convertId="convertId"></converting>
+        <pic-upload v-if="current == 0"></pic-upload>
+        <report v-else-if="current == 1"></report>
         <div v-else>
           wrong current value
         </div>
@@ -25,8 +25,13 @@
   </div>
 </template>
 <script>
+import picUpload from '@/components/pic-upload'
+import report from '@/components/report'
 export default {
   name: 'index',
+  components: {
+    picUpload, report
+  },
   data () {
     return {
       current: 0
