@@ -25,6 +25,7 @@
   </div>
 </template>
 <script>
+import util from '@/libs/util'
 import picUpload from '@/components/pic-upload'
 import report from '@/components/report'
 export default {
@@ -36,6 +37,12 @@ export default {
     return {
       current: 0
     }
+  },
+  nextStep () {
+    this.current++;
+  },
+  prevStep () {
+    this.current--;
   }
 }
 </script>
