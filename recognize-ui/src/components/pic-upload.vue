@@ -20,7 +20,7 @@
         :on-remove="handleRmFile">
         <div style="padding: 20px 0">
           <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
-          <p>Click or drag files here to upload</p>
+          <p>Click or drag pic files here to upload</p>
         </div>
       </Upload>
       </Col>
@@ -33,6 +33,7 @@
   </div>
 </template>
 <script>
+import util from '@/libs/util'
 export default {
   name: 'pic-upload',
   data () {
@@ -66,32 +67,17 @@ export default {
     },
     submitPic () {
       if (!this.isEmpty()) {
-        util.post('upload/multybase64', this.fileList).then(res => {
+        util.post('upload/multybase64', this.picList).then(res => {
           this.$Message.success('pic upload success!');
-          this.$emit('setDocData',this.handleDocList());
-          this.$emit('next');
+//          this.$emit('next');
         });
       } else {
         this.$Message.error('请至少上传一个doc文件');
       }
     },
     isEmpty () {
-      return this.fileList.length == 0;
+      return this.picList.length == 0;
     },
-    /**
-     * 0: waiting convert ; 1: converting success
-     */
-    handleDocList () {
-      let docList = [];
-      this.fileList.forEach(function (e) {
-        docList.push({
-          filename: e.name,
-          convertId: e.convertId,
-          status: 0
-        })
-      });
-      return docList;
-    }
   }
 }
 </script>
