@@ -54,10 +54,9 @@ export default {
       return false;
     },
     handleRmFile (file) {
-      console.log(file);
       let _vue = this;
       let i = 0;
-      this.fileList.forEach(function (e) {
+      this.picList.forEach(function (e) {
         if (e.name == file.name) {
           _vue.picList.splice(i,1);
           _vue.readyUploadPicList.splice(i,1);
