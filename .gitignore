@@ -29,3 +29,9 @@ hs_err_pid*
 target
 
 .DS_Store
+
+./data/*.jpeg
+
+./data/*.jpg
+
+./data/*.png
