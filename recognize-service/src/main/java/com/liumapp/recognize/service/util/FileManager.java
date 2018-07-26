@@ -1,5 +1,6 @@
 package com.liumapp.recognize.service.util;
 
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -20,7 +21,7 @@ import java.util.Date;
  * @date 7/25/18
  */
 @Component
-public class FileManager {
+public class FileManager implements InitializingBean {
 
     private String fileName;
 
@@ -91,4 +92,15 @@ public class FileManager {
                 .body(new FileSystemResource(file));
     }
 
+    @Override
+    public void afterPropertiesSet() throws Exception {
+
+    }
+
+    /**
+     * 检查目录是否存在
+     */
+    private void checkFolder () {
+        
+    }
 }
