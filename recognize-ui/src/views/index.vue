@@ -11,7 +11,7 @@
       <Col span="18" offset="3">
       <Card>
         <Steps :current="current">
-          <Step title="上传匹对图片" content="上传一张自拍照和一张身份证正面照片，匹对两张图片的人脸是否为同一个人"></Step>
+          <Step title="上传匹对图片" content="上传一张自拍照和一张身份证正面照片，匹对两张图片的人脸是否为同一个人" @next="nextStep"></Step>
           <Step title="配对结果" content="图片相似程度，包括清晰度等参数"></Step>
         </Steps>
         <pic-upload v-if="current == 0"></pic-upload>

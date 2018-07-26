@@ -65,18 +65,19 @@ export default {
       });
     },
     submitPic () {
-      if (!this.isEmpty()) {
+      if (!this.isTwoPic()) {
         util.post('upload/multybase64', this.picList).then(res => {
           this.$Message.success('pic upload success!');
-//          this.$emit('next');
+          this.$emit('next');
         });
       } else {
-        this.$Message.error('请至少上传一个doc文件');
+        this.$Message.error('必须上传两张用于匹对的照片');
       }
     },
-    isEmpty () {
-      return this.picList.length == 0;
-    },
+    isTwoPic () {
+      return this.picList.length == 2;
+    }
+
   }
 }
 </script>
