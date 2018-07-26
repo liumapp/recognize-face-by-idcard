@@ -1,5 +1,7 @@
 package com.liumapp.recognize.service.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpHeaders;
@@ -26,6 +28,8 @@ public class FileManager implements InitializingBean {
     private String fileName;
 
     private String savePath;
+
+    private Logger logger = LoggerFactory.getLogger(FileManager.class);
 
     public void save (MultipartFile file) throws IOException {
         this.fileName = file.getOriginalFilename();
@@ -94,13 +98,24 @@ public class FileManager implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-
+        this.checkFolder();
     }
 
     /**
      * 检查目录是否存在
      */
-    private void checkFolder () {
-        
+    private void checkFolder () throws Exception {
+        File file = new File(this.savePath);
+        if (file.exists()) {
+            if (file.isDirectory()) {
+                logger.info("fileManager initialized");
+            } else {
+                logger.error("fileManager require a save path , which must be a folder!");
+                throw new Exception("file manager require a save path , which must be a folder");
+            }
+        } else {
+            logger.info("fileManager initialized with a folder named : " + this.savePath);
+            file.mkdir();
+        }
     }
 }

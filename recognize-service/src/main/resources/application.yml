@@ -9,12 +9,16 @@ spring:
 
 ---
 # dev
+spring:
+  profiles: dev
 liumapp:
   filemanager:
     savePath: /usr/local/tomcat/project/recognize-face-by-idcard/data/
 
 ---
 # docker
+spring:
+  profiles: docker
 liumapp:
   filemanager:
     savePath: /recognize-face-by-idcard/data/
