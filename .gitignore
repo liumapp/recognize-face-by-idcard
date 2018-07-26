@@ -30,8 +30,8 @@ target
 
 .DS_Store
 
-./data/*.jpeg
+data/*.jpeg
 
-./data/*.jpg
+data/*.jpg
 
-./data/*.png
+data/*.png
