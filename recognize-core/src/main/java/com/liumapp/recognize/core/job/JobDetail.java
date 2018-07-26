@@ -1,5 +1,7 @@
 package com.liumapp.recognize.core.job;
 
+import org.json.JSONObject;
+
 /**
  * @author liumapp
  * @file JobDetail.java
@@ -9,6 +11,12 @@ package com.liumapp.recognize.core.job;
  */
 public abstract class JobDetail<T extends JobData> {
 
+    protected JSONObject jobResult;
 
+    public JobDetail() {
+        this.jobResult = new JSONObject();
+    }
+
+    public abstract JSONObject handle(T data);
 
 }
