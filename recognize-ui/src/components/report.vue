@@ -6,7 +6,7 @@
  * @date 7/24/18
  */
 <template>
-  this is report component
+  <div>this is report component</div>
 </template>
 <script>
 export default {
