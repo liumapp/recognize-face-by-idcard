@@ -7,18 +7,7 @@ spring:
   application:
       name: recognize-service
 
----
-# dev
-spring:
-  profiles: dev
-liumapp:
-  filemanager:
-    savePath: /usr/local/tomcat/project/recognize-face-by-idcard/data/
-  recognize:
-    baidu:
-      appId: your_appId_here
-      appKey: your_appKey_here
-      appSecret: your_appSecret_here
+
 
 ---
 # docker

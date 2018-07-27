@@ -25,7 +25,7 @@ public class MatchUtil {
     @Resource(name = "baduAipFace")
     private AipFace client;
 
-    public JSONObject match () {
+    public JSONObject match () throws NullPointerException {
         if (check()) {
             // image1/image2也可以为url或facetoken, 相应的imageType参数需要与之对应
             MatchRequest req1 = new MatchRequest(base64Image1, "BASE64");
