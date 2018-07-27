@@ -29,12 +29,9 @@ public class FileManager implements InitializingBean {
 
     private String savePath;
 
-    /**
-     * base64 content
-     */
-    private byte[] baseContent;
-
     private Logger logger = LoggerFactory.getLogger(FileManager.class);
+
+    private String baseStr;
 
     public void save (MultipartFile file) throws IOException {
         this.fileName = file.getOriginalFilename();
@@ -52,7 +49,6 @@ public class FileManager implements InitializingBean {
 
     public MultipartFile base64toMultipart (String base64) {
         Base64File base64File = this.base64File(base64);
-        this.baseContent = base64File.getContent();
         return base64File;
     }
 
@@ -60,6 +56,7 @@ public class FileManager implements InitializingBean {
         try {
             String[] baseStr = base64.split(",");
             BASE64Decoder decoder = new BASE64Decoder();
+            this.baseStr = baseStr[1];
             byte[] b = new byte[0];
             b = decoder.decodeBuffer(baseStr[1]);
 
@@ -126,7 +123,7 @@ public class FileManager implements InitializingBean {
         }
     }
 
-    public byte[] getBaseContent() {
-        return baseContent;
+    public String getBaseStr() {
+        return baseStr;
     }
 }

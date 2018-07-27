@@ -40,16 +40,16 @@ public class UploadController {
     @ResponseBody
     public String multyBase64Upload (@RequestBody MultyDocEntity[] list) {
         try {
-            LinkedList<byte[]> contents = new LinkedList<byte[]>();
+            LinkedList<String> contents = new LinkedList<String>();
             // save file in local
             for (MultyDocEntity doc : list) {
                 MultipartFile file = fileManager.base64toMultipart(doc.getContent());
-                contents.add(fileManager.getBaseContent());
                 fileManager.save(file);
+                contents.add(fileManager.getBaseStr());
             }
             // match
-            matchUtil.setBase64Image1(contents.pop().toString());
-            matchUtil.setBase64Image2(contents.pop().toString());
+            matchUtil.setBase64Image1(contents.pop());
+            matchUtil.setBase64Image2(contents.pop());
             org.json.JSONObject result = matchUtil.match();
             logger.info("get info from match util : " + result.toString());
         } catch (IOException e) {
