@@ -1,6 +1,7 @@
 package com.liumapp.recognize.core;
 
 import com.liumapp.recognize.core.config.BaiduApiConfig;
+import com.liumapp.recognize.core.idcard.IdCardUtil;
 import com.liumapp.recognize.core.match.MatchUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +21,11 @@ public class RecognizeCore {
     @Bean
     public MatchUtil matchUtil() {
         return new MatchUtil();
+    }
+
+    @Bean
+    public IdCardUtil idCardUtil () {
+        return new IdCardUtil();
     }
 
 }

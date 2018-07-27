@@ -30,8 +30,10 @@ public class MatchUtil {
             // image1/image2也可以为url或facetoken, 相应的imageType参数需要与之对应
             MatchRequest req1 = new MatchRequest(base64Image1, "BASE64");
             req1.setFaceType("LIVE");
+            req1.setLivenessControl("LOW");
             MatchRequest req2 = new MatchRequest(base64Image2, "BASE64");
             req2.setFaceType("IDCARD");
+            req2.setLivenessControl("NONE");
             ArrayList<MatchRequest> requests = new ArrayList<MatchRequest>();
             requests.add(req1);
             requests.add(req2);

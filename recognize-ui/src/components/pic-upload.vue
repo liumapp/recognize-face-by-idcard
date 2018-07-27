@@ -68,7 +68,7 @@ export default {
       if (this.isTwoPic()) {
         util.post('upload/multybase64', this.picList).then(res => {
           this.$Message.success('pic upload success!');
-          console.log(res.data());
+          console.log(res.data);
 //          this.$emit('next');
         });
       } else {

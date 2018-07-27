@@ -56,9 +56,9 @@ public class UploadController {
             logger.info("get info from match util : " + result.toString());
         } catch (IOException e) {
             e.printStackTrace();
-            return JSON.toJSONString("error");
+            return "error";
         }
-        return JSON.toJSONString(msg);
+        return msg;
     }
 
 }
