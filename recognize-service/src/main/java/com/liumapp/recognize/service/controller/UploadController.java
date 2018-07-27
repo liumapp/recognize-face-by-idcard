@@ -1,6 +1,7 @@
 package com.liumapp.recognize.service.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.liumapp.recognize.core.idcard.IdCardUtil;
 import com.liumapp.recognize.core.match.MatchUtil;
 import com.liumapp.recognize.service.entity.MultyDocEntity;
 import com.liumapp.recognize.service.util.FileManager;
@@ -36,10 +37,14 @@ public class UploadController {
     @Autowired
     private MatchUtil matchUtil;
 
+    @Autowired
+    private IdCardUtil idCardUtil;
+
     @RequestMapping("/multybase64")
     @ResponseBody
     public String multyBase64Upload (@RequestBody MultyDocEntity[] list) {
         String msg = "success";
+        org.json.JSONObject result = null;
         try {
             LinkedList<String> contents = new LinkedList<String>();
             // save file in local
@@ -48,10 +53,13 @@ public class UploadController {
                 fileManager.save(file);
                 contents.add(fileManager.getBaseStr());
             }
+            // check is idcard
+            idCardUtil.setBase64Image(contents.pop());
+
             // match
             matchUtil.setBase64Image1(contents.pop());
             matchUtil.setBase64Image2(contents.pop());
-            org.json.JSONObject result = matchUtil.match();
+            result = matchUtil.match();
             msg = result.toString();
             logger.info("get info from match util : " + result.toString());
         } catch (IOException e) {
