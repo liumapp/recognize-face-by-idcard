@@ -1,6 +1,8 @@
 package com.liumapp.recognize.core;
 
 import com.liumapp.recognize.core.config.BaiduApiConfig;
+import com.liumapp.recognize.core.match.MatchUtil;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
@@ -14,5 +16,10 @@ import org.springframework.context.annotation.Import;
 @Configuration
 @Import({BaiduApiConfig.class})
 public class RecognizeCore {
+
+    @Bean
+    public MatchUtil matchUtil() {
+        return new MatchUtil();
+    }
 
 }
