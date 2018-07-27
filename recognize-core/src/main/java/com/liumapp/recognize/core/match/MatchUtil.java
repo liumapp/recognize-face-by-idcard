@@ -1,5 +1,7 @@
 package com.liumapp.recognize.core.match;
 
+import com.baidu.aip.face.AipFace;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,6 +14,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class MatchUtil {
 
+    @Autowired
+    private AipFace client;
 
+    public void match () {
+        
+    }
 
 }
