@@ -39,6 +39,7 @@ public class UploadController {
     @RequestMapping("/multybase64")
     @ResponseBody
     public String multyBase64Upload (@RequestBody MultyDocEntity[] list) {
+        String msg = "success";
         try {
             LinkedList<String> contents = new LinkedList<String>();
             // save file in local
@@ -51,12 +52,13 @@ public class UploadController {
             matchUtil.setBase64Image1(contents.pop());
             matchUtil.setBase64Image2(contents.pop());
             org.json.JSONObject result = matchUtil.match();
+            msg = result.toString();
             logger.info("get info from match util : " + result.toString());
         } catch (IOException e) {
             e.printStackTrace();
             return JSON.toJSONString("error");
         }
-        return JSON.toJSONString("success");
+        return JSON.toJSONString(msg);
     }
 
 }

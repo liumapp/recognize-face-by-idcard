@@ -68,7 +68,8 @@ export default {
       if (this.isTwoPic()) {
         util.post('upload/multybase64', this.picList).then(res => {
           this.$Message.success('pic upload success!');
-          this.$emit('next');
+          console.log(res.data());
+//          this.$emit('next');
         });
       } else {
         this.$Message.error('必须上传两张用于匹对的照片');
