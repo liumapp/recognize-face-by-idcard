@@ -3,7 +3,6 @@ package com.liumapp.recognize.core.match;
 import com.baidu.aip.face.AipFace;
 import com.baidu.aip.face.MatchRequest;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -27,14 +26,22 @@ public class MatchUtil {
     private AipFace client;
 
     public JSONObject match () {
-        // image1/image2也可以为url或facetoken, 相应的imageType参数需要与之对应
-        MatchRequest req1 = new MatchRequest(base64Image1, "BASE64");
-        MatchRequest req2 = new MatchRequest(base64Image2, "BASE64");
-        ArrayList<MatchRequest> requests = new ArrayList<MatchRequest>();
-        requests.add(req1);
-        requests.add(req2);
-        JSONObject res = client.match(requests);
-        return res;
+        if (check()) {
+            // image1/image2也可以为url或facetoken, 相应的imageType参数需要与之对应
+            MatchRequest req1 = new MatchRequest(base64Image1, "BASE64");
+            MatchRequest req2 = new MatchRequest(base64Image2, "BASE64");
+            ArrayList<MatchRequest> requests = new ArrayList<MatchRequest>();
+            requests.add(req1);
+            requests.add(req2);
+            JSONObject res = client.match(requests);
+            return res;
+        } else {
+            throw new NullPointerException("image1 and image2 must be set !");
+        }
+    }
+
+    private boolean check () {
+        return !(base64Image1 == null || base64Image2 == null);
     }
 
     public String getBase64Image1() {
