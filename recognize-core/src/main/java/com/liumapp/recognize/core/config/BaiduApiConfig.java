@@ -25,7 +25,7 @@ public class BaiduApiConfig {
     private String APP_SECRET;
 
     @Bean
-    public AipFace aipFace () {
+    public AipFace baduAipFace () {
         AipFace client = new AipFace(APP_ID, APP_KEY, APP_SECRET);
 
         // 可选：设置网络连接参数
